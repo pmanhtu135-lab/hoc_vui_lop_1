@@ -16,14 +16,19 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Capacitor & Add iOS
+      - name: Install Capacitor & Add iOS (SPM)
         run: |
           mkdir -p www
           if [ ! -f www/index.html ] && [ -f index.html ]; then
             cp index.html www/index.html
           fi
+          if [ ! -f www/index.html ]; then
+            echo "<h1>Hoc Vui Lop 1</h1>" > www/index.html
+          fi
+          rm -rf ios
           npm install @capacitor/core@6 @capacitor/cli@6 @capacitor/ios@6
-          npx cap add ios
+          npx cap add ios --packagemanager SPM
+          npx cap sync ios
 
       - name: Build Unsigned IPA
         run: |
@@ -38,7 +43,8 @@ jobs:
             CODE_SIGN_IDENTITY="" \
             build
           mkdir -p Payload
-          cp -r $PWD/DerivedData/Build/Products/Release-iphoneos/App.app Payload/
+          APP_PATH=$(find $PWD/DerivedData -name "App.app" -type d | head -n 1)
+          cp -r "$APP_PATH" Payload/
           zip -r HocVuiLop1.ipa Payload
 
       - name: Upload HocVuiLop1.ipa
