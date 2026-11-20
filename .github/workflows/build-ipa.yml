@@ -2,7 +2,7 @@ name: Build iOS IPA
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
 
 jobs:
   build-ipa:
@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Capacitor & Add iOS (SPM)
+      - name: Prepare Web Assets & Capacitor iOS
         run: |
           mkdir -p www
           if [ ! -f www/index.html ] && [ -f index.html ]; then
@@ -27,13 +27,13 @@ jobs:
           fi
           rm -rf ios
           npm install @capacitor/core@6 @capacitor/cli@6 @capacitor/ios@6
-          npx cap add ios --packagemanager SPM
+          npx cap add ios
           npx cap sync ios
 
-      - name: Build Unsigned IPA
+      - name: Build Unsigned IPA via Xcode Workspace
         run: |
           cd ios/App
-          xcodebuild -project App.xcodeproj \
+          xcodebuild -workspace App.xcworkspace \
             -scheme App \
             -configuration Release \
             -sdk iphoneos \
