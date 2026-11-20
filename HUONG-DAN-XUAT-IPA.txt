@@ -1,0 +1,8 @@
+=== HƯỚNG DẪN TẠO FILE HocVuiLop1.ipa TRONG 3 PHÚT ===
+
+1. Giải nén tệp HocVuiLop1-IPA-Project.zip này ra một thư mục.
+2. Truy cập https://github.com -> Tạo 1 Repository mới (New repository).
+3. Bấm 'uploading an existing file' -> Kéo thả TOÀN BỘ các tệp & thư mục vừa giải nén vào (bao gồm cả thư mục ẩn .github) rồi bấm 'Commit changes'.
+4. Chuyển sang tab 'Actions' trên GitHub -> Đợi khoảng 3 phút cho dấu tích xanh xuất hiện.
+5. Bấm vào dòng chạy đó -> Kéo xuống mục 'Artifacts' ở cuối trang để tải tệp 'HocVuiLop1-IPA.zip' chứa file 'HocVuiLop1.ipa'.
+6. Dùng Sideloadly (https://sideloadly.io) trên Windows/Mac để cài trực tiếp HocVuiLop1.ipa vào iPhone 11 Pro Max!
